@@ -3,6 +3,10 @@ package br.com.gm.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gm.enumerated.Orientation;
+import br.com.gm.exception.CreatingRoverException;
+import br.com.gm.exception.OrientationNotFoundException;
+
 public class MarsRover {
 	
 	private int maxCoordenateX;
@@ -33,17 +37,26 @@ public class MarsRover {
 		this.maxCoordenateY = maxCoordenateY;
 	}
 	
-	public void addRover(int positionX, int positionY, char orientation){
-		Rover aRover = new Rover(positionX, positionY, orientation);
-		rovers.add(aRover);
+	public void addRover(int positionX, int positionY, char orientation) throws CreatingRoverException{
+		try {
+			Rover aRover = new Rover(positionX, positionY, Orientation.getOrientation(orientation));
+			rovers.add(aRover);
+		} catch (OrientationNotFoundException e) {
+			throw new CreatingRoverException(e.getMessage());
+		}
 	}
 
 	public void sendCommand(String string) {
 		//TODO make implementation for command 
 	}
 	public List<String> getFinalPositions(){
-		//TODO make implemantion for getFinalPositions
-		return null;
+		List<String> positions = new ArrayList<String>();
+		for( Rover aRover : rovers){
+			System.out.println(aRover.getPosition());
+			positions.add(aRover.getPosition());
+		}
+		return positions;
 	}
+
 	
 }
