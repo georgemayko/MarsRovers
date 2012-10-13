@@ -7,17 +7,18 @@ public class Rover {
 	private Orientation orientation;
 	private int coordenateX;
 	private int coordenateY;
+	private MarsRover marsRover;
 	
 	public Rover() {
 		
 	}
 	
-	public Rover(int coordenateX, int coordenateY, Orientation orientation) {
+	public Rover(int coordenateX, int coordenateY, Orientation orientation, MarsRover marsRover) {
 		super();
-		//TODO create a transform method Char To Orientation
 		this.orientation = orientation;
 		this.coordenateX = coordenateX;
 		this.coordenateY = coordenateY;
+		this.marsRover = marsRover;
 	}
 	
 	public Orientation getOrientation() {
@@ -42,6 +43,10 @@ public class Rover {
 	
 	public void setCoordenateY(int coordenateY) {
 		this.coordenateY = coordenateY;
+	}
+	
+	public void processCommand(String command){
+		//TODO implement the move aspect
 	}
 	
 	public String getPosition(){
