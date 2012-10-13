@@ -39,7 +39,7 @@ public class MarsRover {
 	
 	public void addRover(int positionX, int positionY, char orientation) throws CreatingRoverException{
 		try {
-			Rover aRover = new Rover(positionX, positionY, Orientation.getOrientation(orientation));
+			Rover aRover = new Rover(positionX, positionY, Orientation.getOrientation(orientation),this);
 			rovers.add(aRover);
 		} catch (OrientationNotFoundException e) {
 			throw new CreatingRoverException(e.getMessage());
