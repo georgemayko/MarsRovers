@@ -12,9 +12,10 @@ public class Rover {
 		
 	}
 	
-	public Rover(int coordenateX, int coordenateY, char Orientation) {
+	public Rover(int coordenateX, int coordenateY, Orientation orientation) {
 		super();
 		//TODO create a transform method Char To Orientation
+		this.orientation = orientation;
 		this.coordenateX = coordenateX;
 		this.coordenateY = coordenateY;
 	}
@@ -41,6 +42,16 @@ public class Rover {
 	
 	public void setCoordenateY(int coordenateY) {
 		this.coordenateY = coordenateY;
+	}
+	
+	public String getPosition(){
+		StringBuilder sb = new StringBuilder();
+		sb.append(coordenateX);
+		sb.append(" ");
+		sb.append(coordenateY);
+		sb.append(" ");
+		sb.append(this.orientation);
+		return sb.toString();
 	}
 	
 }
