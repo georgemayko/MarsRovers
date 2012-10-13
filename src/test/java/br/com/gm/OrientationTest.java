@@ -2,7 +2,7 @@ package br.com.gm;
 
 
 import br.com.gm.enumerated.Orientation;
-import br.com.gm.exception.OrientationNotFounException;
+import br.com.gm.exception.OrientationNotFoundException;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -29,7 +29,7 @@ public class OrientationTest extends TestCase{
     
     
     
-    public void testConversionCharToEnum() throws OrientationNotFounException{
+    public void testConversionCharToEnum() throws OrientationNotFoundException{
     
     	assertEquals(Orientation.EAST, Orientation.getOrientation('E'));
     }

@@ -1,8 +1,6 @@
 package br.com.gm.enumerated;
 
-import javax.swing.text.Position;
-
-import br.com.gm.exception.OrientationNotFounException;
+import br.com.gm.exception.OrientationNotFoundException;
 
 public enum Orientation {
 	NORTH('N'),
@@ -17,13 +15,13 @@ public enum Orientation {
 	}
 
 	
-	public static Orientation getOrientation( char value) throws OrientationNotFounException{
+	public static Orientation getOrientation( char value) throws OrientationNotFoundException{
 		for(Orientation orientation : values()){
 			if(orientation.orientation == value){
 				return orientation;
 			}
 		}
-		throw new OrientationNotFounException();
+		throw new OrientationNotFoundException();
     }
 	
 }
