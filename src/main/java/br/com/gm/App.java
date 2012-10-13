@@ -12,5 +12,7 @@ public class App
     {
         MarsRover marsRover = new MarsRover(5, 5);
         
+        marsRover.addRover(1,2,'N');
+        
     }
 }
