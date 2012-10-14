@@ -1,6 +1,6 @@
 package br.com.gm.enumerated;
 
-import br.com.gm.exception.OrientationNotFoundException;
+import br.com.gm.exception.MovementNotFoundException;
 
 public enum Movement {
 	LEFT('N'),
@@ -14,13 +14,13 @@ public enum Movement {
 	}
 
 	
-	public static Movement getMovement( char value) throws OrientationNotFoundException{
+	public static Movement getMovement( char value) throws MovementNotFoundException{
 		for(Movement movement : values()){
 			if(movement.move == value){
 				return movement;
 			}
 		}
-		throw new OrientationNotFoundException();
+		throw new MovementNotFoundException();
     }
 	
 }
