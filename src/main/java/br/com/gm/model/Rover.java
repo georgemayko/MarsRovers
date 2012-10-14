@@ -1,5 +1,8 @@
 package br.com.gm.model;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.com.gm.enumerated.Movement;
 import br.com.gm.enumerated.Orientation;
 import br.com.gm.exception.CreatingRoverException;
@@ -12,6 +15,8 @@ public class Rover {
 	private int coordenateX;
 	private int coordenateY;
 	private MarsRover marsRover;
+	
+	private Logger logger = LogManager.getLogger(Rover.class);
 
 	public Rover(int coordenateX, int coordenateY, char orientation, MarsRover marsRover) throws CreatingRoverException {
 		super();

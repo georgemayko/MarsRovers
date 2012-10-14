@@ -19,7 +19,7 @@ public class MarsRover {
 	private int minCoordenateY;
 	private List<Rover> rovers;
 	
-	Logger logger = LogManager.getLogger(MarsRover.class);
+	private Logger logger = LogManager.getLogger(MarsRover.class);
 	
 	
 	public MarsRover(int maxCoordenateX, int maxCoordenateY) {
