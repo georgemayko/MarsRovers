@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.gm.enumerated.Movement;
 import br.com.gm.enumerated.Orientation;
 import br.com.gm.exception.CreatingRoverException;
+import br.com.gm.exception.MovementInvalidException;
 import br.com.gm.exception.MovementNotFoundException;
 import br.com.gm.exception.OrientationNotFoundException;
 
@@ -68,7 +69,12 @@ public class Rover {
 					rotateRight(getOrientation());
 					break;
 				case MIDDLE:
-					moveForward(getOrientation());
+					try{
+						moveForward(getOrientation());
+					}
+					catch (MovementInvalidException e) {
+						logger.error(e.getMessage());
+					}
 					break;
 				default:
 					break;
@@ -124,24 +130,32 @@ public class Rover {
 		}
 	}
 	
-	private void moveForward(Orientation orientation){
+	private void moveForward(Orientation orientation) throws MovementInvalidException{
 		//TODO check MarsRover space and throw exception
 		switch (orientation) {
 			case NORTH:
-				if(marsRover.getMaxCoordenateY() != getCoordenateY())
+				if(marsRover.getMaxCoordenateY() > getCoordenateY())
 					setCoordenateY(getCoordenateY() + 1);
+				else 
+					throw new MovementInvalidException(MovementInvalidException.MAX_POSITION_ALREADY_REACHED);
 				break;
 			case WEST:
-				if(marsRover.getMinCoordenateX() != getCoordenateX())
+				if(marsRover.getMinCoordenateX() < getCoordenateX())
 					setCoordenateX(getCoordenateX() - 1);
+				else
+					throw new MovementInvalidException(MovementInvalidException.MIN_POSITION_ALREADY_REACHED);
 				break;
 			case EAST:
-				if(marsRover.getMaxCoordenateX() != getCoordenateX())
+				if(marsRover.getMaxCoordenateX() < getCoordenateX())
 					setCoordenateX(getCoordenateX() + 1);
+				else 
+					throw new MovementInvalidException(MovementInvalidException.MAX_POSITION_ALREADY_REACHED);
 				break;
 			case SOUTH:
-				if(marsRover.getMinCoordenateY() != getCoordenateY())
+				if(marsRover.getMinCoordenateY() < getCoordenateY())
 					setCoordenateY(getCoordenateY() - 1); 
+				else 
+					throw new MovementInvalidException(MovementInvalidException.MIN_POSITION_ALREADY_REACHED);
 				break;
 			default:
 				break;
