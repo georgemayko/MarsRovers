@@ -26,7 +26,7 @@ public class RoverMoveForwardTest {
 	public void movingForwardToNorthOutOfPlateuTest() throws Throwable {
 		try {
 			//rover on max Y coordenate
-			this.rover = new Rover(1, 1, 'N', new MarsRover(1, 1));
+			this.rover = new Rover(1, 3, 'N', new MarsRover(3, 3));
 			moveForward.invoke(rover, rover.getOrientation());
 		} catch (IllegalArgumentException e) {
 			e.getCause();
@@ -41,7 +41,7 @@ public class RoverMoveForwardTest {
 	public void movingForwardToEastOutOfPlateuTest() throws Throwable {
 		try {
 			//rover on max X coordenate
-			this.rover = new Rover(1, 0, 'E', new MarsRover(1, 1));
+			this.rover = new Rover(2, 1, 'E', new MarsRover(2, 2));
 			moveForward.invoke(rover, rover.getOrientation());
 		} catch (IllegalArgumentException e) {
 			e.getCause();
@@ -56,7 +56,7 @@ public class RoverMoveForwardTest {
 	public void movingForwardToSouthOutOfPlateuTest() throws Throwable {
 		try {
 			//rover on min Y coordenate
-			this.rover = new Rover(1, 0, 'S', new MarsRover(1, 1));
+			this.rover = new Rover(2, 0, 'S', new MarsRover(3, 1));
 			moveForward.invoke(rover, rover.getOrientation());
 		} catch (IllegalArgumentException e) {
 			e.getCause();
@@ -71,7 +71,7 @@ public class RoverMoveForwardTest {
 	public void movingForwardToWestOutOfPlateuTest() throws Throwable {
 		try {
 			//rover on min X coordenate
-			this.rover = new Rover(0, 1, 'W', new MarsRover(1, 1));
+			this.rover = new Rover(0, 2, 'W', new MarsRover(1, 3));
 			moveForward.invoke(rover, rover.getOrientation());
 		} catch (IllegalArgumentException e) {
 			e.getCause();
