@@ -3,11 +3,13 @@ package br.com.gm.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gm.enumerated.Orientation;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.com.gm.exception.CreatingRoverException;
+import br.com.gm.exception.InvalidMarsRoverPosition;
 import br.com.gm.exception.MovementNotFoundException;
 import br.com.gm.exception.NoRoverCreatedException;
-import br.com.gm.exception.OrientationNotFoundException;
 
 public class MarsRover {
 	
@@ -16,6 +18,8 @@ public class MarsRover {
 	private int minCoordenateX;
 	private int minCoordenateY;
 	private List<Rover> rovers;
+	
+	Logger logger = LogManager.getLogger(MarsRover.class);
 	
 	
 	public MarsRover(int maxCoordenateX, int maxCoordenateY) {
@@ -57,20 +61,31 @@ public class MarsRover {
 		this.minCoordenateY = minCoordenateY;
 	}
 
-	public void addRover(int positionX, int positionY, char orientation) throws CreatingRoverException{
-		try {
-			Rover aRover = new Rover(positionX, positionY, Orientation.getOrientation(orientation),this);
-			rovers.add(aRover);
-		} catch (OrientationNotFoundException e) {
-			throw new CreatingRoverException(e.getMessage());
+	public void addRover(int positionX, int positionY, char orientation) throws InvalidMarsRoverPosition{
+		//TODO eliminate printStackTrace
+		if((positionX <= getMaxCoordenateX() && positionX >= getMinCoordenateX()) 
+				&& (positionY <= getMaxCoordenateY() && positionY >= getMinCoordenateY())){
+			try{
+				Rover aRover = new Rover(positionX, positionY, orientation,this);
+				rovers.add(aRover);
+			}catch (CreatingRoverException e) {
+				logger.error(e.getMessage());
+				e.printStackTrace();
+			}
 		}
+		else 
+			throw new InvalidMarsRoverPosition();
 	}
 
-	public void sendCommand(String command) throws NoRoverCreatedException {
+	public void sendCommand(String command) {
+		//TODO eliminate printStackTrace
 		try {
 			rovers.get(getLastRoverAddedIndex()).processCommand(command);
 		} catch (MovementNotFoundException e) {
-			// TODO Auto-generated catch block
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}catch( NoRoverCreatedException e ){
+			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
 	}

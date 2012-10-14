@@ -2,7 +2,9 @@ package br.com.gm.model;
 
 import br.com.gm.enumerated.Movement;
 import br.com.gm.enumerated.Orientation;
+import br.com.gm.exception.CreatingRoverException;
 import br.com.gm.exception.MovementNotFoundException;
+import br.com.gm.exception.OrientationNotFoundException;
 
 public class Rover {
 
@@ -11,12 +13,17 @@ public class Rover {
 	private int coordenateY;
 	private MarsRover marsRover;
 
-	public Rover(int coordenateX, int coordenateY, Orientation orientation, MarsRover marsRover) {
+	public Rover(int coordenateX, int coordenateY, char orientation, MarsRover marsRover) throws CreatingRoverException {
 		super();
-		this.orientation = orientation;
-		this.coordenateX = coordenateX;
-		this.coordenateY = coordenateY;
-		this.marsRover = marsRover;
+		try{
+			this.orientation = Orientation.getOrientation(orientation);
+			this.coordenateX = coordenateX;
+			this.coordenateY = coordenateY;
+			this.marsRover = marsRover;
+		}
+		catch (OrientationNotFoundException e) {
+			throw new CreatingRoverException(e.getMessage());
+		}
 	}
 
 	public Orientation getOrientation() {
