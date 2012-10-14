@@ -3,14 +3,12 @@ package br.com.gm.model;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import br.com.gm.enumerated.Orientation;
 import br.com.gm.exception.CreatingRoverException;
 import br.com.gm.exception.MovementInvalidException;
-import br.com.gm.exception.MovementNotFoundException;
 
 public class RoverMoveForwardTest {
 
@@ -25,7 +23,7 @@ public class RoverMoveForwardTest {
 	} 
 	
 	@Test(expected = MovementInvalidException.class)
-	public void test() {
+	public void movingForwardToNorthOutOfPlateuTest() throws Throwable {
 		try {
 			moveForward.invoke(rover, rover.getOrientation());
 		} catch (IllegalArgumentException e) {
@@ -33,8 +31,9 @@ public class RoverMoveForwardTest {
 		} catch (IllegalAccessException e) {
 			e.getCause();
 		} catch (InvocationTargetException e) {
-			e.getCause();
+			throw e.getCause();
 		}
 	}
+	
 
 }
