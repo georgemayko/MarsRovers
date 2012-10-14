@@ -146,7 +146,7 @@ public class Rover {
 					throw new MovementInvalidException(MovementInvalidException.MIN_POSITION_ALREADY_REACHED);
 				break;
 			case EAST:
-				if(marsRover.getMaxCoordenateX() < getCoordenateX())
+				if(marsRover.getMaxCoordenateX() > getCoordenateX())
 					setCoordenateX(getCoordenateX() + 1);
 				else 
 					throw new MovementInvalidException(MovementInvalidException.MAX_POSITION_ALREADY_REACHED);
