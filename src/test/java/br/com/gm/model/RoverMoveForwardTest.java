@@ -3,6 +3,8 @@ package br.com.gm.model;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import junit.framework.Assert;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -81,6 +83,78 @@ public class RoverMoveForwardTest {
 			throw e.getCause();
 		}
 	}
+	
+	
+	@Test
+	public void movingForwardToNorthTest() throws Throwable {
+		try {
+			this.rover = new Rover(1, 1, 'N', new MarsRover(3, 3));
+			moveForward.invoke(rover, rover.getOrientation());
+			
+			Assert.assertEquals(1, rover.getCoordenateX());
+			Assert.assertEquals(2, rover.getCoordenateY());
+		} catch (IllegalArgumentException e) {
+			e.getCause();
+		} catch (IllegalAccessException e) {
+			e.getCause();
+		} catch (InvocationTargetException e) {
+			throw e.getCause();
+		}
+	}
+	
+	@Test
+	public void movingForwardToEastTest() throws Throwable {
+		try {
+			this.rover = new Rover(0, 1, 'E', new MarsRover(2, 2));
+			moveForward.invoke(rover, rover.getOrientation());
+			
+			Assert.assertEquals(1, rover.getCoordenateX());
+			Assert.assertEquals(1, rover.getCoordenateY());
+		} catch (IllegalArgumentException e) {
+			e.getCause();
+		} catch (IllegalAccessException e) {
+			e.getCause();
+		} catch (InvocationTargetException e) {
+			throw e.getCause();
+		}
+	}
+	
+	@Test
+	public void movingForwardToSouthTest() throws Throwable {
+		try {
+			
+			this.rover = new Rover(2, 1, 'S', new MarsRover(3, 1));
+			moveForward.invoke(rover, rover.getOrientation());
+			
+			Assert.assertEquals(2, rover.getCoordenateX());
+			Assert.assertEquals(0, rover.getCoordenateY());
+		} catch (IllegalArgumentException e) {
+			e.getCause();
+		} catch (IllegalAccessException e) {
+			e.getCause();
+		} catch (InvocationTargetException e) {
+			throw e.getCause();
+		}
+	}
+	
+	@Test
+	public void movingForwardToWestTest() throws Throwable {
+		try {
+			
+			this.rover = new Rover(1, 2, 'W', new MarsRover(1, 3));
+			moveForward.invoke(rover, rover.getOrientation());
+			
+			Assert.assertEquals(0, rover.getCoordenateX());
+			Assert.assertEquals(2, rover.getCoordenateY());
+		} catch (IllegalArgumentException e) {
+			e.getCause();
+		} catch (IllegalAccessException e) {
+			e.getCause();
+		} catch (InvocationTargetException e) {
+			throw e.getCause();
+		}
+	}
+	
 	
 
 }
