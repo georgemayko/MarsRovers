@@ -3,7 +3,7 @@ package br.com.gm.enumerated;
 import br.com.gm.exception.MovementNotFoundException;
 
 public enum Movement {
-	LEFT('N'),
+	LEFT('L'),
 	RIGHT('R'),
 	MIDDLE('M');
 
