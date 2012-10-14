@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gm.enumerated.Orientation;
 import br.com.gm.exception.CreatingRoverException;
 import br.com.gm.exception.MovementNotFoundException;
+import br.com.gm.exception.NoRoverCreatedException;
 import br.com.gm.exception.OrientationNotFoundException;
 
 public class MarsRover {
@@ -65,9 +66,7 @@ public class MarsRover {
 		}
 	}
 
-	public void sendCommand(String command) {
-		//TODO make implementation for command
-		//set command for the last rover added
+	public void sendCommand(String command) throws NoRoverCreatedException {
 		try {
 			rovers.get(getLastRoverAddedIndex()).processCommand(command);
 		} catch (MovementNotFoundException e) {
@@ -84,9 +83,11 @@ public class MarsRover {
 		return positions;
 	}
 	
-	private int getLastRoverAddedIndex(){
-		//TODO check size of rovers list
-		return rovers.size() - 1;
+	private int getLastRoverAddedIndex() throws NoRoverCreatedException{
+		if(rovers.size()>0)
+			return rovers.size() - 1;
+		else 
+			throw new NoRoverCreatedException();
 	}
 
 	

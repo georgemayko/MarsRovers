@@ -20,7 +20,7 @@ public enum Movement {
 				return movement;
 			}
 		}
-		throw new MovementNotFoundException();
+		throw new MovementNotFoundException(value);
     }
 	
 }
