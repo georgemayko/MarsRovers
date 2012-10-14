@@ -9,10 +9,6 @@ public class Rover {
 	private int coordenateY;
 	private MarsRover marsRover;
 	
-	public Rover() {
-		
-	}
-	
 	public Rover(int coordenateX, int coordenateY, Orientation orientation, MarsRover marsRover) {
 		super();
 		this.orientation = orientation;
@@ -55,7 +51,7 @@ public class Rover {
 		sb.append(" ");
 		sb.append(coordenateY);
 		sb.append(" ");
-		sb.append(this.orientation);
+		sb.append(this.orientation.toString().charAt(0));
 		return sb.toString();
 	}
 	
