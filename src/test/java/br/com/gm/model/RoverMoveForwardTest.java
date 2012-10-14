@@ -93,6 +93,7 @@ public class RoverMoveForwardTest {
 			
 			Assert.assertEquals(1, rover.getCoordenateX());
 			Assert.assertEquals(2, rover.getCoordenateY());
+			Assert.assertEquals(Orientation.NORTH, rover.getOrientation());
 		} catch (IllegalArgumentException e) {
 			e.getCause();
 		} catch (IllegalAccessException e) {
@@ -110,6 +111,7 @@ public class RoverMoveForwardTest {
 			
 			Assert.assertEquals(1, rover.getCoordenateX());
 			Assert.assertEquals(1, rover.getCoordenateY());
+			Assert.assertEquals(Orientation.EAST, rover.getOrientation());
 		} catch (IllegalArgumentException e) {
 			e.getCause();
 		} catch (IllegalAccessException e) {
@@ -128,6 +130,7 @@ public class RoverMoveForwardTest {
 			
 			Assert.assertEquals(2, rover.getCoordenateX());
 			Assert.assertEquals(0, rover.getCoordenateY());
+			Assert.assertEquals(Orientation.SOUTH, rover.getOrientation());
 		} catch (IllegalArgumentException e) {
 			e.getCause();
 		} catch (IllegalAccessException e) {
@@ -146,6 +149,7 @@ public class RoverMoveForwardTest {
 			
 			Assert.assertEquals(0, rover.getCoordenateX());
 			Assert.assertEquals(2, rover.getCoordenateY());
+			Assert.assertEquals(Orientation.WEST, rover.getOrientation());
 		} catch (IllegalArgumentException e) {
 			e.getCause();
 		} catch (IllegalAccessException e) {
