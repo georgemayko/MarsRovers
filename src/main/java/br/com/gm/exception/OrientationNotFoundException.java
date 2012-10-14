@@ -7,12 +7,7 @@ public class OrientationNotFoundException extends Exception {
 	private final static String MESSAGE = "Can not convert orientation into enum";
 	
 	public OrientationNotFoundException() {
-		
-	}
-	@Override
-	public String getMessage() {
-		//return super.getMessage();
-		return MESSAGE;
+		super(MESSAGE);
 	}
 
 }
